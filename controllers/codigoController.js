@@ -9,7 +9,7 @@ const ingresarCodigo = async (req, res) => {
         const codigoExistente = await Codigo.findOne({ codigo: codigo.toString() });
 
         if (!codigoExistente) {
-            return res.status(404).json({ mensaje: 'Código no válido.' });
+            return res.status(404).json({ mensaje: 'Código no válido, sigue intentandolo, suerte para la proxima.' });
         }
 
         if (codigoExistente.estado !== 'libre') {
