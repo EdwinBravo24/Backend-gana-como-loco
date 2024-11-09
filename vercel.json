@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "softedubackmongodb",
+    "name": "backend-gana-como-loco",
     "builds": [
         {
             "src": "index.js",
