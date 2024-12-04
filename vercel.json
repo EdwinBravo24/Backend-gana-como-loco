@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "backend-gana-como-loco",
+    "name": "backend-noutube",
     "builds": [
         {
             "src": "index.js",
