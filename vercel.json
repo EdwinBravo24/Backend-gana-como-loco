@@ -10,15 +10,7 @@
     "routes": [
         {
             "src": "/(.*)",
-          "methods": ["OPTIONS", "POST"],
-      "dest": "index.js",
-      "headers": {
-        "Access-Control-Allow-Origin": "https://frontend-gana-como-loco.vercel.app",
-        "Access-Control-Allow-Methods": "POST, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization",
-        "Access-Control-Allow-Credentials": "true"
-      }
-    }
-  ]
+            "dest": "/index.js"
+        }
+    ]
 }
-    
