@@ -14,7 +14,10 @@ const PORT = process.env.PORT || 4000;
 // Configuración general
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({
+    origin: '*',
+  }));
+  
 
 // Conexión a MongoDB
 mongoose.connect(process.env.MONGO_URI, {})
