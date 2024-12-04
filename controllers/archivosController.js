@@ -1,5 +1,6 @@
 // controlador archivosController
 const Archivo = require('../models/archivos');
+const Usuario = require('../models/User');
 const AWS = require('aws-sdk');
 const multer = require('multer');
 const path = require('path');
