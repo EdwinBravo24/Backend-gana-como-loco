@@ -14,8 +14,15 @@ const PORT = process.env.PORT || 4000;
 // Configuración general
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
-app.use(cors());
-
+app.use(cors({
+    origin: [
+      'https://frontend-gana-como-loco.vercel.app', 
+      'http://localhost:4000' // Si también pruebas localmente
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+  }));
 // Conexión a MongoDB
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
