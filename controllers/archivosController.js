@@ -18,10 +18,6 @@ const upload = multer({ storage }).single('archivo'); // Solo un archivo llamado
 
 // Subir archivo a S3 y guardar referencia en MongoDB
 const subirArchivo = async (req, res) => {
-    res.header('Access-Control-Allow-Origin', 'https://frontend-gana-como-loco.vercel.app');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     const usuarioId = req.userId; // Extraer ID del usuario autenticado desde el middleware de auth
     const { titulo } = req.body; // Obtener el título del cuerpo de la solicitud
 
