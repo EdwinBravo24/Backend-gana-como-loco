@@ -1,6 +1,5 @@
 // controlador usuarios y administradores
 const User = require('../models/User');
-const Admin = require('../models/Admin');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -32,28 +31,6 @@ const registrarUsuario = async (req, res) => {
     }
 };
 
-const registrarAdmin = async (req, res) => {
-    const { email, pass } = req.body;
-
-    try {
-        const adminExistente = await Admin.findOne({ email });
-        if (adminExistente) {
-            return res.status(400).json({ message: 'El correo ya está registrado' });
-        }
-
-        const hashedPass = await bcrypt.hash(pass, 10);
-
-        const nuevoAdmin = new Admin({
-            email,
-            pass: hashedPass
-        });
-
-        await nuevoAdmin.save();
-        res.status(201).json({ message: 'Administrador registrado exitosamente' });
-    } catch (error) {
-        res.status(500).json({ message: 'Error al registrar el administrador', error });
-    }
-};
 
 const loginUsuario = async (req, res) => {
     const { email, pass } = req.body;
@@ -78,14 +55,14 @@ const loginUsuario = async (req, res) => {
             { expiresIn: '1h' }
         );
 
-        // Redirigir según el rol
-        const redirectUrl = usuario.role === 'admin' ? '/admin/home' : '/user/home';
+        // Siempre redirige a '/user/home'
+        const redirectUrl = '/user/home';
 
         res.status(200).json({
             message: 'Login exitoso',
             token,
             role: usuario.role,
-            redirectUrl // Añadido para la redirección
+            redirectUrl // Este campo se puede quitar si no lo vas a usar en el frontend
         });
     } catch (error) {
         res.status(500).json({ message: 'Error en el login', error });
@@ -95,6 +72,5 @@ const loginUsuario = async (req, res) => {
 
 module.exports = {
     registrarUsuario,
-    registrarAdmin,
     loginUsuario
 }
